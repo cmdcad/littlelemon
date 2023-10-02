@@ -35,9 +35,9 @@ struct Onboarding: View {
                 Button("Register"){
                     if validate() {
                         
-                        UserDefaults.standard.set($firstName, forKey: kFirstName)
-                        UserDefaults.standard.set($lastName, forKey: kLastName)
-                        UserDefaults.standard.set($email, forKey: kEmail)
+                        UserDefaults.standard.set(firstName, forKey: kFirstName)
+                        UserDefaults.standard.set(lastName, forKey: kLastName)
+                        UserDefaults.standard.set(email, forKey: kEmail)
                         
                         isLoggedIn = true
                     }
