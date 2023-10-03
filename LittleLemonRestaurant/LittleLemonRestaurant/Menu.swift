@@ -25,8 +25,11 @@ struct Menu: View {
                     List {
                         ForEach(dishes, id:\.self) { dish in
                             HStack{
-                                let p = "\(dish.title ?? "empty")) \(dish.price ?? "")";  Text(p)
+                                let p = "\(dish.title ?? "empty")) \(dish.price ?? "")";
+                                Text(p)
                                 AsyncImage(url: URL(string: dish.image!))
+                                    .frame(width: 50, height: 50, alignment: .center)
+                                    
                         }
                     }
                     .listStyle(.plain)
@@ -61,13 +64,14 @@ struct Menu: View {
     
     func Load(_ fullMenu:JSONmenu){
         let menus = fullMenu.menu
-        for item in menus{
-            let dish = Dish()
-            dish.title = item.title
-            dish.image = item.image
-            dish.price = item.price
-        }
-        try? viewContext.save()
+        Dish.createDishesFrom(menuItems: menus, viewContext)
+//        for item:MenuItem in menus{
+//            let dish = Dish()
+//            dish.title = item.title
+//            dish.image = item.image
+//            dish.price = item.price
+//        }
+//        try? viewContext.save()
     }
     
     /*
