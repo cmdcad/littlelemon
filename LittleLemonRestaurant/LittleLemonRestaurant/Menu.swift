@@ -26,6 +26,8 @@ struct Menu: View {
     }
     
     func getMenuData(){
+        PersistenceController().clear()
+        
         let url = URL(string: "raw.githubusercontent.com/Meta-Mobile-Developer-PC/Working-With-Data-API/main/menu.json")!
         
        let request = URLRequest(url: url)
@@ -35,7 +37,16 @@ struct Menu: View {
             if let data = data, let string = String(data: data, encoding: .utf8)
             {
                 print(string)
-                let info = try! JSONDecoder().decode([MenuItem].self, from: data)
+                let fullMenu = try! JSONDecoder().decode(JSONmenu.self, from: data)
+                
+                let menus = fullMenu.menu
+                for item in menus{
+                    let dish = Dish()
+                    dish.title = item.title
+                    dish.image = item.image
+                    dish.price = item.price
+                }
+                try? viewContext.save()
             }
         }
         dataTask.resume()

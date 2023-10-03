@@ -7,6 +7,10 @@
 
 import Foundation
 
+struct JSONmenu:Decodable {
+    let menu: [MenuItem]
+}
+
 struct MenuItem:Decodable{
     let title:String
     let image:String
