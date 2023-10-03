@@ -19,6 +19,19 @@ struct Menu: View {
                 .font(.headline)
             Text("Welcome to Little Lemon")
                 .font(.body)
+        
+            FetchedObjects() {
+                    (dishes: [Dish]) in
+                    List {
+                        ForEach(dishes, id:\.self) { dish in
+                            HStack{
+                                let p = "\(dish.title ?? "empty")) \(dish.price ?? "")";  Text(p)
+                                AsyncImage(url: URL(string: dish.image!))
+                        }
+                    }
+                    .listStyle(.plain)
+                }
+            }
         }
         .onAppear(){
             getMenuData()
@@ -28,30 +41,54 @@ struct Menu: View {
     func getMenuData(){
         PersistenceController().clear()
         
-        let url = URL(string: "raw.githubusercontent.com/Meta-Mobile-Developer-PC/Working-With-Data-API/main/menu.json")!
+        let url = URL(string: "https://raw.githubusercontent.com/Meta-Mobile-Developer-PC/Working-With-Data-API/main/menu.json")!
         
        let request = URLRequest(url: url)
       
         let  dataTask = URLSession.shared.dataTask(with: request){
             data, response, error in
-            if let data = data, let string = String(data: data, encoding: .utf8)
+             
+            if let data = data
             {
-                print(string)
                 let fullMenu = try! JSONDecoder().decode(JSONmenu.self, from: data)
                 
-                let menus = fullMenu.menu
-                for item in menus{
-                    let dish = Dish()
-                    dish.title = item.title
-                    dish.image = item.image
-                    dish.price = item.price
-                }
-                try? viewContext.save()
+             Load(fullMenu)
             }
         }
         dataTask.resume()
        
     }
+    
+    func Load(_ fullMenu:JSONmenu){
+        let menus = fullMenu.menu
+        for item in menus{
+            let dish = Dish()
+            dish.title = item.title
+            dish.image = item.image
+            dish.price = item.price
+        }
+        try? viewContext.save()
+    }
+    
+    /*
+    func reload() async {
+        let url = URL(string: "https://raw.githubusercontent.com/Meta-Mobile-Developer-PC/Working-With-Data-API/main/littleLemonSimpleMenu.json")!
+         let urlSession = URLSession.shared
+        
+        do {
+            let (data, _) = try await urlSession.data(from: url)
+            let fullMenu = try! JSONDecoder().decode(JSONmenu.self, from: data)
+            let menuItems = fullMenu.menu
+           
+        }
+        catch {
+            fatalError("Error loading menus!")
+        }
+    }
+     */
+    
+    //var menuItems = [MenuItem]()
+    
 }
 
 struct Menu_Previews: PreviewProvider {

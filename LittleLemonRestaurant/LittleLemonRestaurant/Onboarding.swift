@@ -13,9 +13,9 @@ struct Onboarding: View {
     let kEmail:String = "email"
     
     @State var isLoggedIn = false
-    @State var firstName = ""
-    @State var lastName = ""
-    @State var email = ""
+    @State var firstName = "Mike"
+    @State var lastName = "Jones"
+    @State var email = "Email"
        
     func validate() -> Bool {
         let test =  !(firstName.isEmpty || lastName.isEmpty || email.isEmpty)
