@@ -30,8 +30,7 @@ struct Onboarding: View {
         NavigationView{
             VStack{
                 NavigationLink(destination: Home(), isActive: $isLoggedIn){
-                    
-                 
+                    EmptyView()
                 }
                 
                 Hero()
@@ -58,7 +57,7 @@ struct Onboarding: View {
                         if validate() {
                                             
                             UserDefaults.standard.set(firstName, forKey: kFirstName)
-                            //UserDefaults.standard.set(lastName, forKey: kLastName)
+                            
                             UserDefaults.standard.set(email, forKey: kEmail)
                             
                             isLoggedIn = true

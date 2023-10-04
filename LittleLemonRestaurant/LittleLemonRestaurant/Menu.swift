@@ -13,7 +13,7 @@ struct Menu: View {
     @State var seachBarIsVisible:Bool = false
    
     var body: some View {
-        VStack{
+        VStack(alignment: .leading){
             VStack{
               
                 Group{
@@ -44,11 +44,51 @@ struct Menu: View {
                     else{
                         Spacer()
                     }
-                }
-                
+                } 
                 .padding()
             }
             .background(Color("CustomGreen"))
+            
+            VStack(alignment: .leading){
+                Text("ORDER FOR DELIVERY!")
+                    .bold()
+                
+                ScrollView(.horizontal, showsIndicators: false){
+                    HStack {
+                        Text("Starters")
+                            .padding([.leading,.trailing], 10)
+                            .padding(.vertical, 8)
+                            .background(Color("CustomGray"))
+                            .cornerRadius(16)
+                      
+                        Text("Mains")
+                            .padding([.leading,.trailing], 10)
+                            .padding(.vertical, 8)
+                            .background(Color("CustomGray"))
+                            .cornerRadius(16)
+                        
+                        Text("Deserts")
+                            .padding([.leading,.trailing], 10)
+                            .padding(.vertical, 8)
+                            .background(Color("CustomGray"))
+                            .cornerRadius(16)
+                        
+                        Text("Drinks")
+                            .padding([.leading,.trailing], 10)
+                            .padding(.vertical, 8)
+                            .background(Color("CustomGray"))
+                            .cornerRadius(16)
+                            .frame(width: 80)
+                        
+                        Text("Specials")
+                            .padding([.leading,.trailing], 10)
+                            .padding(.vertical, 8)
+                            .background(Color("CustomGray"))
+                            .cornerRadius(16)
+                    }
+                }
+            }
+            .padding(.horizontal)
             
             FetchedObjects(predicate: buildPredicate(), sortDescriptors: buildSortDescriptors()) {
                     (dishes: [Dish]) in
@@ -56,19 +96,20 @@ struct Menu: View {
                         ForEach(dishes, id:\.self) { dish in
                             HStack(spacing: 30){
                                 Text("\(dish.title ?? "empty")  - \(dish.price ?? "")")
+                                
                                 Spacer()
-//                                if checkImage(dish.image ?? ""){
-//                                    AsyncImage(url: URL(string: dish.image!))
-//                                        .aspectRatio(contentMode: .fit)
-//                                        .frame(maxWidth: 70, maxHeight: 70)
-//                                }
-//                                else{
-                                    Image("logo-waiter")
-                                        .resizable()
-                                        .frame(width: 70, height: 70)
-                                    
-                              //  }
-                                    
+                                
+                                if dish.image != nil {
+                                    AsyncImage(url: URL(string: dish.image!)) { image in
+                                    image.resizable()
+                                } placeholder: {
+                                    ProgressView()
+                                }
+                                .frame(maxWidth: 70, maxHeight: 70)
+                                }
+                                else{
+                                    ProgressView()
+                                }
                         }
                     }
                    // .listStyle(.plain)

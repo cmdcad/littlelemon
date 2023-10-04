@@ -24,6 +24,7 @@
 		6A28BFAA2ACC757500183A37 /* Dish+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A28BFA82ACC757500183A37 /* Dish+CoreDataProperties.swift */; };
 		6AF4CA7E2ACDB15C00035007 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF4CA7D2ACDB15C00035007 /* Model.swift */; };
 		6AF4CA822ACDC63100035007 /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF4CA812ACDC63100035007 /* Hero.swift */; };
+		6AF4CA842ACE140600035007 /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF4CA832ACE140600035007 /* CheckBox.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 		6A28BFA82ACC757500183A37 /* Dish+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dish+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		6AF4CA7D2ACDB15C00035007 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		6AF4CA812ACDC63100035007 /* Hero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hero.swift; sourceTree = "<group>"; };
+		6AF4CA832ACE140600035007 /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,15 +79,17 @@
 		6A28BF832ACC734600183A37 /* LittleLemonRestaurant */ = {
 			isa = PBXGroup;
 			children = (
+				6AF4CA852ACE21AB00035007 /* USER PROFILE */,
 				6A28BFA72ACC757500183A37 /* Dish+CoreDataClass.swift */,
 				6A28BFA82ACC757500183A37 /* Dish+CoreDataProperties.swift */,
 				6A28BF842ACC734600183A37 /* LittleLemonRestaurantApp.swift */,
 				6A28BF962ACC745A00183A37 /* Home.swift */,
 				6AF4CA812ACDC63100035007 /* Hero.swift */,
+				6A28BF9A2ACC74A800183A37 /* UserProfile.swift */,
+				6AF4CA832ACE140600035007 /* CheckBox.swift */,
 				6AF4CA7D2ACDB15C00035007 /* Model.swift */,
 				6A28BF922ACC740C00183A37 /* ContentView.swift */,
 				6A28BF982ACC748700183A37 /* Persistence.swift */,
-				6A28BF9A2ACC74A800183A37 /* UserProfile.swift */,
 				6A28BF9C2ACC74D400183A37 /* Menu.swift */,
 				6A28BF9F2ACC751400183A37 /* MenuItem.swift */,
 				6A28BF9E2ACC751400183A37 /* MenuList.swift */,
@@ -104,6 +108,13 @@
 				6A28BF8B2ACC734E00183A37 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		6AF4CA852ACE21AB00035007 /* USER PROFILE */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "USER PROFILE";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -176,6 +187,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6AF4CA842ACE140600035007 /* CheckBox.swift in Sources */,
 				6A28BFA62ACC754C00183A37 /* ExampleDatabase.xcdatamodeld in Sources */,
 				6A28BF952ACC742400183A37 /* Onboarding.swift in Sources */,
 				6A28BFAA2ACC757500183A37 /* Dish+CoreDataProperties.swift in Sources */,

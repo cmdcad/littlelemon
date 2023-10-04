@@ -13,7 +13,7 @@ struct Hero: View {
     var body: some View {
         if model.showHero {
             VStack{
-                Group{
+                VStack {
                     HStack{
                         Text("Little Lemon")
                             .font(.title)
@@ -34,6 +34,8 @@ struct Hero: View {
                     HStack{
                         Text("We are famaily owned Mediteranean restaurant, focused on traditional recipes served with a modern twist")
                             .foregroundColor(.white)
+                            .frame(width: 200, height: 150)
+                        Spacer()
                         Image("logo-waiter")
                             .frame(width: 100, height: 100)
                             .padding()
