@@ -22,6 +22,8 @@
 		6A28BFA62ACC754C00183A37 /* ExampleDatabase.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6A28BFA42ACC754C00183A37 /* ExampleDatabase.xcdatamodeld */; };
 		6A28BFA92ACC757500183A37 /* Dish+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A28BFA72ACC757500183A37 /* Dish+CoreDataClass.swift */; };
 		6A28BFAA2ACC757500183A37 /* Dish+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A28BFA82ACC757500183A37 /* Dish+CoreDataProperties.swift */; };
+		6AF4CA7E2ACDB15C00035007 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF4CA7D2ACDB15C00035007 /* Model.swift */; };
+		6AF4CA822ACDC63100035007 /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF4CA812ACDC63100035007 /* Hero.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +43,8 @@
 		6A28BFA52ACC754C00183A37 /* ExampleDatabase.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ExampleDatabase.xcdatamodel; sourceTree = "<group>"; };
 		6A28BFA72ACC757500183A37 /* Dish+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dish+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		6A28BFA82ACC757500183A37 /* Dish+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dish+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		6AF4CA7D2ACDB15C00035007 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		6AF4CA812ACDC63100035007 /* Hero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hero.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +81,8 @@
 				6A28BFA82ACC757500183A37 /* Dish+CoreDataProperties.swift */,
 				6A28BF842ACC734600183A37 /* LittleLemonRestaurantApp.swift */,
 				6A28BF962ACC745A00183A37 /* Home.swift */,
+				6AF4CA812ACDC63100035007 /* Hero.swift */,
+				6AF4CA7D2ACDB15C00035007 /* Model.swift */,
 				6A28BF922ACC740C00183A37 /* ContentView.swift */,
 				6A28BF982ACC748700183A37 /* Persistence.swift */,
 				6A28BF9A2ACC74A800183A37 /* UserProfile.swift */,
@@ -175,8 +181,10 @@
 				6A28BFAA2ACC757500183A37 /* Dish+CoreDataProperties.swift in Sources */,
 				6A28BF932ACC740C00183A37 /* ContentView.swift in Sources */,
 				6A28BFA02ACC751400183A37 /* MenuList.swift in Sources */,
+				6AF4CA822ACDC63100035007 /* Hero.swift in Sources */,
 				6A28BF9D2ACC74D500183A37 /* Menu.swift in Sources */,
 				6A28BF9B2ACC74A800183A37 /* UserProfile.swift in Sources */,
+				6AF4CA7E2ACDB15C00035007 /* Model.swift in Sources */,
 				6A28BF972ACC745A00183A37 /* Home.swift in Sources */,
 				6A28BFA92ACC757500183A37 /* Dish+CoreDataClass.swift in Sources */,
 				6A28BFA12ACC751400183A37 /* MenuItem.swift in Sources */,

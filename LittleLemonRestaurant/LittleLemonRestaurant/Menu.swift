@@ -9,36 +9,83 @@ import SwiftUI
 
 struct Menu: View {
     @Environment(\.managedObjectContext) private var viewContext
-    
+    @State var searchText: String = ""
+    @State var seachBarIsVisible:Bool = false
+   
     var body: some View {
         VStack{
-            Text("Little Lemon")
-                .font(.title)
+            VStack{
+              
+                Group{
+                    Hero()
+                }
+                 
+                HStack(spacing: 10){
+                    Button(action: {seachBarIsVisible.toggle()})   {
+                        ZStack{
+                            Circle()
+                                .fill(Color.white)
+                                .frame(width: 35, height: 35)
+                            Image(systemName: "magnifyingglass")
+                        }
+                    }
+                    if seachBarIsVisible {
+                        ZStack(){
+                            Rectangle()
+                                .fill(.white)
+                                .frame(height: 35).cornerRadius(30)
+                            VStack{
+                                TextField("Search Item", text: $searchText)
+                                    .cornerRadius(30)
+                                    .padding(.horizontal,16)
+                            }
+                        }
+                    }
+                    else{
+                        Spacer()
+                    }
+                }
+                
                 .padding()
-            Text("Chicago")
-                .font(.headline)
-            Text("Welcome to Little Lemon")
-                .font(.body)
-        
-            FetchedObjects() {
+            }
+            .background(Color("CustomGreen"))
+            
+            FetchedObjects(predicate: buildPredicate(), sortDescriptors: buildSortDescriptors()) {
                     (dishes: [Dish]) in
                     List {
                         ForEach(dishes, id:\.self) { dish in
-                            HStack{
-                                let p = "\(dish.title ?? "empty")) \(dish.price ?? "")";
-                                Text(p)
-                                AsyncImage(url: URL(string: dish.image!))
-                                    .frame(width: 50, height: 50, alignment: .center)
+                            HStack(spacing: 30){
+                                Text("\(dish.title ?? "empty")  - \(dish.price ?? "")")
+                                Spacer()
+//                                if checkImage(dish.image ?? ""){
+//                                    AsyncImage(url: URL(string: dish.image!))
+//                                        .aspectRatio(contentMode: .fit)
+//                                        .frame(maxWidth: 70, maxHeight: 70)
+//                                }
+//                                else{
+                                    Image("logo-waiter")
+                                        .resizable()
+                                        .frame(width: 70, height: 70)
+                                    
+                              //  }
                                     
                         }
                     }
-                    .listStyle(.plain)
+                   // .listStyle(.plain)
                 }
             }
         }
         .onAppear(){
             getMenuData()
         }
+    }
+    
+    
+    func checkImage(_ source: String) -> Bool{
+        guard let _ = URL(string: source) else {
+            return false
+        }
+        return true
     }
     
     func getMenuData(){
@@ -65,38 +112,35 @@ struct Menu: View {
     func Load(_ fullMenu:JSONmenu){
         let menus = fullMenu.menu
         Dish.createDishesFrom(menuItems: menus, viewContext)
-//        for item:MenuItem in menus{
-//            let dish = Dish()
-//            dish.title = item.title
-//            dish.image = item.image
-//            dish.price = item.price
-//        }
-//        try? viewContext.save()
     }
     
-    /*
-    func reload() async {
-        let url = URL(string: "https://raw.githubusercontent.com/Meta-Mobile-Developer-PC/Working-With-Data-API/main/littleLemonSimpleMenu.json")!
-         let urlSession = URLSession.shared
-        
-        do {
-            let (data, _) = try await urlSession.data(from: url)
-            let fullMenu = try! JSONDecoder().decode(JSONmenu.self, from: data)
-            let menuItems = fullMenu.menu
-           
-        }
-        catch {
-            fatalError("Error loading menus!")
-        }
+    func buildPredicate() -> NSPredicate {
+        if searchText == "" {
+                          return NSPredicate(value: true)
+                      }
+                      return NSPredicate(format: "title CONTAINS[cd] %@", searchText)
     }
-     */
     
-    //var menuItems = [MenuItem]()
+    
+    func buildSortDescriptors() -> [NSSortDescriptor] {
+        return [
+                   NSSortDescriptor(key: "title",
+                                    ascending: true,
+                                    selector:
+                     #selector(NSString .localizedCaseInsensitiveCompare)),
+                   NSSortDescriptor(key: "price",
+                                    ascending: true,
+                                    selector:
+                     #selector(NSString .localizedCaseInsensitiveCompare))
+               ]
+    }
     
 }
 
 struct Menu_Previews: PreviewProvider {
     static var previews: some View {
         Menu()
+            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+            .environmentObject(Model())
     }
 }

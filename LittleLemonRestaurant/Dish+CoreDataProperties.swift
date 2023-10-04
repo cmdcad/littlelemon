@@ -35,8 +35,12 @@ extension Dish {
             dish.image = item.image
 
             //Dish.saveDatabase(context)
-            try? context.save()
         }
+        let dish = Dish(context: context)
+        dish.title = "Éclairs"
+        dish.price = "15"
+        dish.image = ""
+        try? context.save()
     }
     
 }

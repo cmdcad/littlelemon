@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct Home: View {
+    @EnvironmentObject private var model: Model
+    
     let persistence = PersistenceController()
     
     var body: some View {
@@ -16,6 +18,7 @@ struct Home: View {
                 .tag(0)
                 .tabItem {
                     Label("Menu", systemImage: "list.dash")
+                    //Text("Menu")
                 }
                 .environment(\.managedObjectContext, persistence.container.viewContext)
             
@@ -23,8 +26,11 @@ struct Home: View {
                 .tag(0)
                 .tabItem{
                     Label("User Profile", systemImage: "square.and.pencil")
+                    Text("User Profile")
                 }
+                .environmentObject(Model())
         }
+        .background(Color.white)
         .navigationBarBackButtonHidden(true)
     }
 }
@@ -32,5 +38,6 @@ struct Home: View {
 struct Home_Previews: PreviewProvider {
     static var previews: some View {
         Home()
+            .environmentObject(Model())
     }
 }

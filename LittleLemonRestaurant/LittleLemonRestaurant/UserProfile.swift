@@ -9,6 +9,7 @@ import SwiftUI
 
 struct UserProfile: View {
     @Environment(\.presentationMode) var presentation
+   // @EnvironmentObject private var model: Model
     
     let firstName = UserDefaults.standard.string(forKey: "kFirstName")
     let lastName = UserDefaults.standard.string(forKey: "kLastName")
@@ -16,6 +17,12 @@ struct UserProfile: View {
     
     let kIsLoggedIn = "kIsLoggedIn"
     @State var isLoggedIn = false
+   
+    /*
+    init(){
+        model.showHero = false
+    }
+     */
     
     var body: some View {
         VStack{
@@ -30,7 +37,7 @@ struct UserProfile: View {
             Text(email ?? "")
             
             Button("LogOut"){
-                UserDefaults.standard.set(true, forKey: kIsLoggedIn)
+                UserDefaults.standard.set(false, forKey: kIsLoggedIn)
                 self.presentation.wrappedValue.dismiss()
             }
         }
@@ -45,5 +52,6 @@ struct UserProfile: View {
 struct UserProfile_Previews: PreviewProvider {
     static var previews: some View {
         UserProfile()
+          //  .environmentObject(Model())
     }
 }

@@ -8,9 +8,14 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject private var model = Model()
+    
     var body: some View {
-        Onboarding()
-            .padding()
+        VStack{
+            Onboarding()
+            Spacer()
+        }
+        .environmentObject(Model())
     }
 }
 
