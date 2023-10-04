@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct UserProfile: View {
-    @Environment(\.presentationMode) var presentation
-   // @EnvironmentObject private var model: Model
+   // @Environment(\.presentationMode) var presentation
+    // @EnvironmentObject private var model: Model
    
     @State var firstName = ""
     @State var lastName = ""
@@ -18,7 +18,7 @@ struct UserProfile: View {
     init(){
         firstName = UserDefaults.standard.string(forKey: "kFirstName") ?? ""
         lastName = UserDefaults.standard.string(forKey: "kLastName") ?? ""
-       email = UserDefaults.standard.string(forKey: "kEmail") ?? ""
+        email = UserDefaults.standard.string(forKey: "kEmail") ?? ""
           
     }
     
@@ -108,8 +108,10 @@ struct UserProfile: View {
             }
             .padding(.vertical, 8)
             
-            Button(action: { UserDefaults.standard.set(false, forKey: kIsLoggedIn)
-                              self.presentation.wrappedValue.dismiss()}){
+            Button(action: {
+                UserDefaults.standard.set(false, forKey: kIsLoggedIn)
+                //Clear()
+            }){
                               Text("Log out")
                           }
                               .frame(minWidth:300)
@@ -121,6 +123,7 @@ struct UserProfile: View {
                 Button(action:{}){
                     Text("Discard Changes")
                 }
+                //.frame(width: 150)
                 .padding([.horizontal])
                 .padding(.vertical, 10)
                 .background(Color("CustomGreen"))
@@ -146,6 +149,12 @@ struct UserProfile: View {
             }
         }
         }
+    }
+    
+    func Clear(){
+        firstName = ""
+        lastName = ""
+        email = ""
     }
 }
 

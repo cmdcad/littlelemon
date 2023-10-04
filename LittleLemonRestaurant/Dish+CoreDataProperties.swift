@@ -25,16 +25,10 @@ extension Dish {
                                  _ context:NSManagedObjectContext) {
       
         for item in menuItems {
-//            if Dish.exists(name: item.title, context )!{
-//                continue
-//            }
-            
             let dish = Dish(context: context)
             dish.title = item.title
             dish.price = item.price
             dish.image = item.image
-
-            //Dish.saveDatabase(context)
         }
         let dish = Dish(context: context)
         dish.title = "Éclairs"
